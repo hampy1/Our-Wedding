@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation de Mariage - [Vos Noms]</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfaf6; /* Light cream/off-white for a soft wedding feel */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            padding: 2.5rem; /* Increased padding */
+            text-align: center;
+            color: #4a4a4a; /* Darker grey for text */
+        }
+        h1 {
+            font-size: 2.5rem; /* Larger heading */
+            font-weight: 700;
+            color: #8b5cf6; /* A nice purple accent */
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            font-size: 1.8rem; /* Sub-heading for names */
+            font-weight: 600;
+            color: #6d28d9; /* Darker purple */
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .date-time, .venue {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .rsvp-link {
+            display: inline-block;
+            background-color: #8b5cf6; /* Purple button */
+            color: #ffffff;
+            padding: 0.8rem 1.8rem;
+            border-radius: 0.75rem; /* Rounded button */
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+        .rsvp-link:hover {
+            background-color: #6d28d9; /* Darker purple on hover */
+        }
+        .qr-code-section {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px dashed #e0e0e0; /* Dotted line separator */
+        }
+        .qr-code-section img {
+            max-width: 180px; /* Slightly larger QR code */
+            height: auto;
+            border-radius: 0.75rem; /* Rounded QR code image */
+            margin: 1.5rem auto 1rem auto;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        .footer-text {
+            font-size: 0.95rem;
+            color: #777;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1 class="text-purple-600">Vous êtes invités !</h1>
+        <p class="text-lg mb-4">
+            C'est avec une immense joie que nous vous convions à célébrer notre union.
+        </p>
+        <h2 class="text-purple-700">
+            [Nom de la Mariée] & [Nom du Marié]
+        </h2>
+
+        <div class="my-6">
+            <p class="date-time">
+                <span class="font-semibold">Quand :</span> Samedi 20 Septembre 2025 à 16h00
+            </p>
+            <p class="venue">
+                <span class="font-semibold">Où :</span> Château de [Nom du Château], [Ville, Code Postal]
+            </p>
+        </div>
+
+        <p>
+            Votre présence est le plus beau des cadeaux. Nous avons hâte de partager ce moment inoubliable avec vous !
+        </p>
+
+        <a href="[LIEN_VERS_VOTRE_FORMULAIRE_RSVP]" target="_blank" class="rsvp-link">
+            Confirmer Votre Présence
+        </a>
+
+        <div class="qr-code-section">
+            <p class="text-base font-semibold text-gray-700">
+                Partagez vos souvenirs avec nous !
+            </p>
+            <p class="text-sm text-gray-600 mt-2">
+                Scannez le code QR ci-dessous pour télécharger vos photos et vidéos du mariage.
+            </p>
+            <!-- REMPLACEZ L'URL CI-DESSOUS PAR L'URL DE VOTRE CODE QR RÉEL -->
+            <img src="https://placehold.co/180x180/8b5cf6/ffffff?text=Votre+QR+Code+Ici" alt="QR Code pour le téléchargement de photos et vidéos">
+            <p class="text-xs text-gray-500 mt-1">
+                (N'oubliez pas de remplacer cette image par votre vrai code QR)
+            </p>
+        </div>
+
+        <p class="footer-text">
+            Avec tout notre amour,<br>
+            [Vos Noms]
+        </p>
+    </div>
+</body>
+</html>

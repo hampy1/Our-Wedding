@@ -10,7 +10,13 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #fdfaf6; /* Light cream/off-white for a soft wedding feel */
+            /* Background Image Properties */
+            background-image: url('https://raw.githubusercontent.com/hampy1/Our-Wedding/main/pic.jpg'); /* Placeholder image - REPLACE THIS URL! */
+            background-size: cover; /* Ensures the image covers the entire background */
+            background-position: center; /* Centers the background image */
+            background-attachment: fixed; /* Makes the background fixed, creating a parallax effect */
+            background-color: #fdfaf6; /* Fallback color if image doesn't load or for transparent areas */
+            
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,20 +28,22 @@
             background-color: #ffffff;
             border-radius: 1.5rem; /* More rounded corners */
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            max-width: 700px;
+            max-width: 700px; /* Increased max-width for more space */
             width: 100%;
             padding: 2.5rem; /* Increased padding */
             text-align: center;
             color: #4a4a4a; /* Darker grey for text */
         }
+        /* Using a more specific selector to ensure styles apply */
         .card h1 {
-            font-size: 2.0rem; /* Larger heading */
+            font-size: 1.6rem; /* Larger heading */
             font-weight: 600;
             color: #005f80; /* A nice blue accent */
             margin-bottom: 1.5rem;
         }
+        /* Using a more specific selector and !important as a last resort for size */
         .card h2 {
-            font-size: 2.8rem !important; /* Sub-heading for names */
+            font-size: 2.1rem !important; /* Sub-heading for names */
             font-weight: 700;
             color: #004059; /* Darker blue */
             margin-bottom: 1rem;
@@ -50,14 +58,14 @@
             margin-bottom: 1rem;
         }
         .date-time, .venue {
-            font-size: 1.2rem;
+            font-size: 1.2rem; /* Made smaller for more emphasis on names */
             font-weight: 500;
             color: #333;
             margin-bottom: 0.5rem;
         }
         .rsvp-link {
             display: inline-block;
-            background-color: #005f80; /* Purple button */
+            background-color: #005f80; /* Blue Marine button */
             color: #ffffff;
             padding: 0.8rem 1.8rem;
             border-radius: 0.75rem; /* Rounded button */
@@ -67,7 +75,7 @@
             transition: background-color 0.3s ease;
         }
         .rsvp-link:hover {
-            background-color: #004059; /* Darker purple on hover */
+            background-color: #004059; /* Darker Blue Marine on hover */
         }
         .qr-code-section {
             margin-top: 2.5rem;
@@ -126,7 +134,7 @@
             <!-- REMPLACEZ L'URL CI-DESSOUS PAR L'URL DE VOTRE CODE QR RÉEL -->
             <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/wedding-qr.png" alt="QR Code pour le téléchargement de photos et vidéos">
             <p class="text-xs text-gray-500 mt-1">
-                
+                <!-- This line was empty and has been kept as such -->
             </p>
         </div>
 

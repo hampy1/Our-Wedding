@@ -22,7 +22,7 @@
             background-color: #ffffff;
             border-radius: 1.5rem; /* More rounded corners */
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             padding: 2.5rem; /* Increased padding */
             text-align: center;
@@ -39,6 +39,10 @@
             font-weight: 700;
             color: #004059; /* Darker blue */
             margin-bottom: 1rem;
+            line-height: 1; /* Ensure single line if possible, prevent extra space */
+            white-space: nowrap; /* Prevent wrapping if names are long */
+            overflow: hidden; /* Hide overflow if nowrap causes issues */
+            text-overflow: ellipsis; /* Add ellipsis if text overflows */
         }
         p {
             font-size: 1.1rem;

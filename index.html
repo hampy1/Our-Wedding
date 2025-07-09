@@ -11,7 +11,7 @@
         body {
             font-family: 'Inter', sans-serif;
             /* Background Image Properties */
-            background-image: url('https://raw.githubusercontent.com/hampy1/Our-Wedding/main/f-6.jpg'); /* Placeholder image - REPLACE THIS URL! */
+            background-image: url('https://raw.githubusercontent.com/hampy1/Our-Wedding/main/f-6.jpg'); /* Your page background image */
             background-size: cover; /* Ensures the image covers the entire background */
             background-position: center; /* Centers the background image */
             background-attachment: fixed; /* Makes the background fixed, creating a parallax effect */
@@ -25,7 +25,11 @@
             box-sizing: border-box;
         }
         .card {
-            background-color: rgba(255, 255, 255, 0.8);
+            /* Changed background-color to rgba for transparency without affecting text */
+            background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
+            /* Removed background-image from card as it was a placeholder and might be confusing */
+            /* If you want an image in the card background, we can add it back with blend modes */
+
             border-radius: 1.5rem; /* More rounded corners */
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             max-width: 700px; /* Increased max-width for more space */
@@ -33,7 +37,7 @@
             padding: 2.5rem; /* Increased padding */
             text-align: center;
             color: #4a4a4a; /* Darker grey for text */
-            
+            /* Removed opacity: 0.8; from here as rgba on background-color handles transparency */
         }
         /* Using a more specific selector to ensure styles apply */
         .card h1 {
@@ -101,12 +105,12 @@
 <body>
     <div class="card">
         <h1 class="">Vous êtes invités !</h1>
-        <p class="text-lg mb-4">
-            C'est avec l'honneur que nous vous invitons à célébrer leur mariage.
-        </p>
         <h2 class="">
             Hampy & Liana
         </h2>
+        <p class="text-lg mb-4">
+            C'est avec l'honneur que nous vous invitons à célébrer leur mariage.
+        </p>
 
         <div class="my-6">
             <p class="date-time">

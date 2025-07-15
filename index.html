@@ -304,19 +304,10 @@
 
         <!-- Slide 2: Date Announcement -->
         <div class="slide" id="slide2">
-            <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/Copie de f-9.jpg" alt="Wedding Date">
+            <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/Cope de f-9.jpg" alt="Wedding Date">
             <div class="slide-content">
                 <h2>Le grand jour est arrivé</h2>
                 <p>Vendredi 26 Juin 2026</p>
-            </div>
-        </div>
-
-        <!-- Slide 3: Location Announcement -->
-        <div class="slide" id="slide3">
-            <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/Salle.jpeg" alt="Wedding Location">
-            <div class="slide-content">
-                <h2>Célébrons à</h2>
-                <p>L'Evento, Gémenos</p>
             </div>
         </div>
 
@@ -324,7 +315,6 @@
         <div class="progress-dots">
             <span class="dot" onclick="event.stopPropagation(); currentSlide(1)"></span>
             <span class="dot" onclick="event.stopPropagation(); currentSlide(2)"></span>
-            <span class="dot" onclick="event.stopPropagation(); currentSlide(3)"></span>
         </div>
     </div>
 
@@ -343,7 +333,7 @@
                 <span class="font-semibold">Le :</span> Vendredi 26 Juin 2026 à 16h30
             </p>
             <p class="venue">
-                <span class="font-semibold">À :</span> L'Evento, 545 Av. du Col-de l'Ange<br>13420 Gémenos
+                <span class="font-semibold">À :</span> L'Evento, 545 Av. du Col-de l'Ange<br>13420 Gémenos, France
             </p>
         </div>
 
@@ -374,9 +364,9 @@
     <script>
         let slideIndex = 0; // Current slide index (0-based)
         let slideshowTimeout; // For auto-advance
-        let totalSlides = 3; // Total number of slides
+        let totalSlides = 2; // Updated to 2 slides
         const slideDuration = 3000; // 3 seconds per slide
-        const totalSlideshowDuration = totalSlides * slideDuration; // 9 seconds total
+        const totalSlideshowDuration = totalSlides * slideDuration; // 6 seconds total
 
         // Elements
         const slideshowOverlay = document.querySelector('.slideshow-overlay');
@@ -431,7 +421,7 @@
             // Start the slideshow
             showSlide(0); // Start with the first slide (index 0)
 
-            // Set a timer to automatically transition to the invitation after 9 seconds
+            // Set a timer to automatically transition to the invitation after 6 seconds
             setTimeout(() => {
                 skipSlideshow();
             }, totalSlideshowDuration);

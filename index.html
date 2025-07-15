@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Vous êtes invités au mariage de Hampy et Liana – le 26 juin 2026 à Gémenos.">
-    <title>Invitation de Mariage - Hampy et Liana</title>
+    <title>Invitation de Mariage - Hampy et Liana </title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -63,10 +63,10 @@
             overflow: hidden; /* Hide overflow if nowrap causes issues */
             text-overflow: ellipsis; /* Add ellipsis if text overflows */
         }
-        p {
+        p { /* Consolidated paragraph styling */
             font-size: 1.0rem;
             line-height: 1.5;
-            margin-bottom: 1rem;
+            margin-bottom: 1rem; /* Consistent margin for paragraphs */
         }
         .date-time, .venue {
             font-size: 1.2rem; /* Made smaller for more emphasis on names */
@@ -124,7 +124,7 @@
                 text-overflow: clip; /* No ellipsis if it wraps */
                 overflow: visible; /* Allow content to flow naturally if it wraps */
             }
-            p {
+            p { /* Apply to all paragraphs on small screens */
                 font-size: 0.9rem; /* Slightly smaller general text */
             }
             .date-time, .venue {
@@ -145,8 +145,8 @@
         <h2 class="">
             Hampy & Liana
         </h2>
-        <p class="text-lg mb-4">
-            C’est avec joie et honneur que nous vous invitons à célébrer notre mariage.
+        <p class="mb-4"> <!-- Removed text-lg here -->
+            C’est avec joie et honneur que nous vous invitons à célébrer notre mariage.
         </p>
 
         <div class="my-6">
@@ -173,11 +173,9 @@
             <p class="text-sm text-gray-600 mt-2">
                 Scannez le code QR ci-dessous pour télécharger vos photos et vidéos du mariage.
             </p>
+            <!-- REMOVED THE EMPTY PARAGRAPH HERE -->
             <!-- REMPLACEZ L'URL CI-DESSOUS PAR L'URL DE VOTRE CODE QR RÉEL -->
             <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/wedding-qr.png" alt="QR Code pour le téléchargement de photos et vidéos">
-            <p class="text-xs text-gray-500 mt-1">
-                <!-- This line was empty and has been kept as such -->
-            </p>
         </div>
 
         <p class="footer-text">

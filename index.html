@@ -16,87 +16,211 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            /* Background Image Properties */
+            /* Background Image Properties for the main page content */
             background-image: url('https://raw.githubusercontent.com/hampy1/Our-Wedding/main/f-6.jpg'); /* Your page background image */
-            background-size: cover; /* Ensures the image covers the entire background */
-            background-position: center; /* Centers the background image */
-            background-attachment: fixed; /* Makes the background fixed, creating a parallax effect */
-            background-color: #fdfaf6; /* Fallback color if image doesn't load or for transparent areas */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #fdfaf6;
             
+            display: flex;
+            flex-direction: column; /* Stack slideshow and card vertically */
+            align-items: center; /* Center horizontally */
+            min-height: 100vh;
+            padding: 0; /* Remove body padding as slideshow will be full-screen */
+            overflow-x: hidden; /* Prevent horizontal scroll from any overflow */
+        }
+
+        /* --- Slideshow Overlay (Full Screen) --- */
+        .slideshow-overlay {
+            position: fixed; /* Fixed to viewport */
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black; /* Default background */
+            z-index: 9999; /* On top of everything */
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            box-sizing: border-box;
+            opacity: 1;
+            transition: opacity 1s ease-out; /* Smooth fade-out transition */
+            overflow: hidden; /* Hide anything outside the slide */
         }
-        .card {
-            /* Changed background-color to rgba for transparency without affecting text */
-            background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
-            /* Removed background-image from card as it was a placeholder and might be confusing */
-            /* If you want an image in the card background, we can add it back with blend modes */
 
-            border-radius: 1.5rem; /* More rounded corners */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            max-width: 700px; /* Increased max-width for more space */
-            width: 100%;
-            padding: 2.5rem; /* Increased padding */
-            text-align: center;
-            color: #4a4a4a; /* Darker grey for text */
-            /* Removed opacity: 0.8; from here as rgba on background-color handles transparency */
+        .slideshow-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none; /* Disable interaction during fade out */
         }
-        /* Using a more specific selector to ensure styles apply */
-        .card h1 {
-            font-size: 1.6rem; /* Larger heading */
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* Hidden by default */
+            transition: opacity 1s ease-in-out; /* Fade transition for slides */
+            overflow: hidden; /* Ensure content stays within slide boundaries */
+        }
+
+        .slide.active {
+            opacity: 1; /* Active slide is visible */
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the entire slide area */
+            transform: scale(1.05); /* Slightly zoomed for slide-in effect */
+            animation: slideInImage 4s forwards; /* Animation for image */
+        }
+
+        .slide-content {
+            position: absolute;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* For readability on images */
+            animation: fadeInText 1.5s ease-out forwards; /* Fade in text */
+            opacity: 0; /* Hidden by default for animation */
+        }
+
+        .slide-content h2 {
+            font-size: 3.5rem; /* Large names for impact */
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white; /* Ensure text is white for contrast */
+            line-height: 1.2;
+        }
+
+        .slide-content p {
+            font-size: 1.8rem; /* Large date/location text */
+            font-weight: 500;
+            color: white; /* Ensure text is white for contrast */
+            line-height: 1.4;
+        }
+
+        /* Animations */
+        @keyframes fadeInText {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInImage {
+            from { transform: scale(1.1); }
+            to { transform: scale(1); }
+        }
+
+        /* --- Skip Button --- */
+        .skip-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 9999px; /* Pill shape */
+            font-size: 1rem;
             font-weight: 600;
-            color: #005f80; /* A nice blue accent */
+            cursor: pointer;
+            z-index: 10000; /* Above everything */
+            transition: background-color 0.3s ease;
+        }
+        .skip-button:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        /* --- Progress Dots --- */
+        .progress-dots {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            display: flex;
+            gap: 8px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+        .dot:hover {
+            background-color: rgba(255,255,255,0.8);
+        }
+
+        /* --- Main Card Styles (Rest of your invitation) --- */
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+            padding: 2.5rem;
+            text-align: center;
+            color: #4a4a4a;
+            margin-top: 50px; /* Space between the end of the slideshow and the card */
+            margin-bottom: 50px; /* Ensure space at the bottom of the page */
+        }
+        .card h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #005f80;
             margin-bottom: 1.5rem;
         }
-        /* Using a more specific selector and !important as a last resort for size */
         .card h2 {
-            font-size: 2.1rem !important; /* Sub-heading for names */
+            font-size: 2.1rem !important;
             font-weight: 700;
-            color: #004059; /* Darker blue */
+            color: #004059;
             margin-bottom: 1rem;
-            line-height: 1; /* Ensure single line if possible, prevent extra space */
-            white-space: nowrap; /* Prevent wrapping if names are long on wider screens */
-            overflow: hidden; /* Hide overflow if nowrap causes issues */
-            text-overflow: ellipsis; /* Add ellipsis if text overflows */
+            line-height: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        p { /* Consolidated paragraph styling */
+        p {
             font-size: 1.0rem;
             line-height: 1.5;
-            margin-bottom: 1rem; /* Consistent margin for paragraphs */
+            margin-bottom: 1rem;
         }
         .date-time, .venue {
-            font-size: 1.2rem; /* Made smaller for more emphasis on names */
+            font-size: 1.2rem;
             font-weight: 500;
             color: #333;
             margin-bottom: 0.5rem;
         }
         .rsvp-link {
             display: inline-block;
-            background-color: #005f80; /* Blue Marine button */
+            background-color: #005f80;
             color: #ffffff;
             padding: 0.8rem 1.8rem;
-            border-radius: 0.75rem; /* Rounded button */
+            border-radius: 0.75rem;
             text-decoration: none;
             font-weight: 600;
             margin-top: 1.5rem;
             transition: background-color 0.3s ease;
         }
         .rsvp-link:hover {
-            background-color: #004059; /* Darker Blue Marine on hover */
+            background-color: #004059;
         }
         .qr-code-section {
             margin-top: 2.5rem;
             padding-top: 2rem;
-            border-top: 1px dashed #e0e0e0; /* Dotted line separator */
+            border-top: 1px dashed #e0e0e0;
         }
         .qr-code-section img {
-            max-width: 180px; /* Slightly larger QR code */
+            max-width: 180px;
             height: auto;
-            border-radius: 0.75rem; /* Rounded QR code image */
+            border-radius: 0.75rem;
             margin: 1.5rem auto 1rem auto;
             display: block;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
@@ -107,45 +231,110 @@
             margin-top: 2rem;
         }
 
-        /* --- Responsive Adjustments for Smaller Screens (e.g., Samsung phones) --- */
-        @media (max-width: 640px) { /* This media query applies styles for screens up to 640px wide */
+        /* --- Responsive Adjustments for Smaller Screens --- */
+        @media (max-width: 640px) {
             body {
-                padding: 10px; /* Reduce overall page padding on small screens */
+                padding: 0; /* No padding for full screen on mobile */
             }
             .card {
-                padding: 1.5rem; /* Reduce card padding to give content more space */
+                padding: 1.5rem;
+                margin-top: 20px; /* Adjust space on small screens */
+                margin-bottom: 20px;
             }
             .card h1 {
-                font-size: 1.4rem; /* Slightly smaller h1 on small screens */
+                font-size: 1.4rem;
             }
             .card h2 {
-                font-size: 1.8rem !important; /* Reduce Hampy & Liana's size to fit on small screens */
-                white-space: normal; /* ALLOW wrapping on very small screens */
-                text-overflow: clip; /* No ellipsis if it wraps */
-                overflow: visible; /* Allow content to flow naturally if it wraps */
+                font-size: 1.8rem !important;
+                white-space: normal;
+                text-overflow: clip;
+                overflow: visible;
             }
-            p { /* Apply to all paragraphs on small screens */
-                font-size: 0.9rem; /* Slightly smaller general text */
+            p {
+                font-size: 0.9rem;
             }
             .date-time, .venue {
-                font-size: 1.0rem; /* Adjust date/venue for smaller screens */
+                font-size: 1.0rem;
             }
             .rsvp-link {
-                padding: 0.7rem 1.6rem; /* Adjust button padding */
+                padding: 0.7rem 1.6rem;
             }
             .qr-code-section img {
-                max-width: 120px; /* Make QR code smaller on small screens to save space */
+                max-width: 120px;
+            }
+
+            /* Slideshow responsive adjustments */
+            .slide-content h2 {
+                font-size: 2.5rem; /* Adjust for mobile */
+            }
+            .slide-content p {
+                font-size: 1.2rem; /* Adjust for mobile */
+            }
+            .skip-button {
+                top: 10px;
+                right: 10px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            .progress-dots {
+                bottom: 10px;
+                gap: 5px;
+            }
+            .dot {
+                width: 10px;
+                height: 10px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Full-screen Slideshow Overlay -->
+    <div class="slideshow-overlay" onclick="skipSlideshow()">
+        <!-- Skip Button -->
+        <div class="skip-button" onclick="event.stopPropagation(); skipSlideshow()">Passer &rarr;</div>
+
+        <!-- Slide 1: Names Announcement -->
+        <div class="slide" id="slide1">
+            <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/f-6.jpg" alt="Hampy & Liana">
+            <div class="slide-content">
+                <h2>Hampy & Liana</h2>
+                <p>Se marient !</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Date Announcement -->
+        <div class="slide" id="slide2">
+            <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/Copie de f-9.jpg" alt="Wedding Date">
+            <div class="slide-content">
+                <h2>Le grand jour est arrivé</h2>
+                <p>Vendredi 26 Juin 2026</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Location Announcement -->
+        <div class="slide" id="slide3">
+            <img src="https://placehold.co/1920x1080/ADD8E6/000080?text=Beautiful+Venue+Image" alt="Wedding Location">
+            <div class="slide-content">
+                <h2>Célébrons à</h2>
+                <p>L'Evento, Gémenos</p>
+            </div>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="progress-dots">
+            <span class="dot" onclick="event.stopPropagation(); currentSlide(1)"></span>
+            <span class="dot" onclick="event.stopPropagation(); currentSlide(2)"></span>
+            <span class="dot" onclick="event.stopPropagation(); currentSlide(3)"></span>
+        </div>
+    </div>
+
+    <!-- Main Invitation Card -->
     <div class="card">
         <h1 class="">Vous êtes invités !</h1>
         <h2 class="">
             Hampy & Liana
         </h2>
-        <p class="mb-4"> <!-- Removed text-lg here -->
+        <p class="mb-4">
             C’est avec joie et honneur que nous vous invitons à célébrer notre mariage.
         </p>
 
@@ -173,8 +362,6 @@
             <p class="text-sm text-gray-600 mt-2">
                 Scannez le code QR ci-dessous pour télécharger vos photos et vidéos du mariage.
             </p>
-            <!-- REMOVED THE EMPTY PARAGRAPH HERE -->
-            <!-- REMPLACEZ L'URL CI-DESSOUS PAR L'URL DE VOTRE CODE QR RÉEL -->
             <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/wedding-qr.png" alt="QR Code pour le téléchargement de photos et vidéos">
         </div>
 
@@ -183,5 +370,72 @@
             Hampy et Liana
         </p>
     </div>
+
+    <script>
+        let slideIndex = 0; // Current slide index (0-based)
+        let slideshowTimeout; // For auto-advance
+        let totalSlides = 3; // Total number of slides
+        const slideDuration = 3000; // 3 seconds per slide
+        const totalSlideshowDuration = totalSlides * slideDuration; // 9 seconds total
+
+        // Elements
+        const slideshowOverlay = document.querySelector('.slideshow-overlay');
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        // --- Slideshow Logic ---
+        function showSlide(n) {
+            // Clear any existing timeouts to prevent conflicts
+            clearTimeout(slideshowTimeout);
+
+            // Hide all slides and deactivate all dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Adjust slide index for looping
+            if (n >= totalSlides) { slideIndex = 0; } // Loop back to first slide
+            else if (n < 0) { slideIndex = totalSlides - 1; }
+            else { slideIndex = n; }
+
+            // Activate current slide and dot
+            slides[slideIndex].classList.add('active');
+            dots[slideIndex].classList.add('active');
+
+            // Set timeout for next slide
+            slideshowTimeout = setTimeout(() => {
+                showSlide(slideIndex + 1);
+            }, slideDuration);
+        }
+
+        // Manual navigation functions
+        function currentSlide(n) {
+            // Adjust for 0-based indexing for internal function
+            showSlide(n - 1);
+        }
+
+        // Function to skip slideshow and reveal invitation
+        function skipSlideshow() {
+            clearTimeout(slideshowTimeout); // Stop auto-advance
+            slideshowOverlay.classList.add('fade-out'); // Trigger fade out animation
+
+            // After fade-out, hide the overlay completely
+            setTimeout(() => {
+                slideshowOverlay.style.display = 'none';
+                // Optional: Scroll to the top of the invitation card if it's not visible
+                // window.scrollTo({ top: document.querySelector('.card').offsetTop, behavior: 'smooth' });
+            }, 1000); // Matches fade-out transition duration
+        }
+
+        // --- Initial Load and Auto-Transition ---
+        window.onload = function() {
+            // Start the slideshow
+            showSlide(0); // Start with the first slide (index 0)
+
+            // Set a timer to automatically transition to the invitation after 9 seconds
+            setTimeout(() => {
+                skipSlideshow();
+            }, totalSlideshowDuration);
+        };
+    </script>
 </body>
 </html>

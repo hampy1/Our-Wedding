@@ -97,10 +97,16 @@
         }
 
         .slide-content p {
-            font-size: 1.8rem; /* Large date/location text */
+            font-size: 2.5rem; /* Increased font size for date */
             font-weight: 500;
             color: white; /* Ensure text is white for contrast */
             line-height: 1.4;
+        }
+
+        /* New style for highlighted date */
+        .highlight-gold {
+            color: #FFD700; /* Gold color */
+            font-weight: 700; /* Make it bold */
         }
 
         /* Animations */
@@ -272,7 +278,7 @@
                 font-size: 2.5rem; /* Adjust for mobile */
             }
             .slide-content p {
-                font-size: 1.2rem; /* Adjust for mobile */
+                font-size: 1.5rem; /* Adjusted for mobile to be slightly smaller than desktop */
             }
             .skip-button {
                 top: 10px;
@@ -299,7 +305,7 @@
 
         <!-- Slide 1: Names Announcement -->
         <div class="slide" id="slide1">
-            <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/f-4.jpg" alt="Hampy & Liana">
+            <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/f-6.jpg" alt="Hampy & Liana">
             <div class="slide-content">
                 <h2>Hampy & Liana</h2>
                 <p>Se marient !</p>
@@ -311,7 +317,7 @@
             <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/f-1.jpg" alt="Wedding Date">
             <div class="slide-content">
                 <h2>Le grand jour est arrivé</h2>
-                <p>Vendredi 26 06 26</p>
+                <p>Vendredi <span class="highlight-gold">26 Juin 2026</span></p>
             </div>
         </div>
 

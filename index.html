@@ -25,11 +25,10 @@
             
             display: flex; /* Use flexbox for vertical stacking */
             flex-direction: column; /* Stack items vertically */
-            justify-content: center; /* Center content vertically */
+            /* Removed justify-content: center; to allow content to start from top for full-screen slideshow */
             align-items: center; /* Center content horizontally */
             min-height: 100vh; /* Ensure body takes full viewport height */
-            padding: 20px;
-            box-sizing: border-box;
+            padding: 0; /* Removed body padding as slideshow will be 100vw/100vh */
         }
         .card {
             /* Changed background-color to rgba for transparency without affecting text */
@@ -44,7 +43,8 @@
             padding: 2.5rem; /* Increased padding */
             text-align: center;
             color: #4a4a4a; /* Darker grey for text */
-            margin-top: 30px; /* Space between slideshow and card */
+            margin-top: 50px; /* Space between slideshow and card */
+            margin-bottom: 50px; /* Add some margin at the bottom of the card */
         }
         /* Using a more specific selector to ensure styles apply */
         .card h1 {
@@ -110,21 +110,25 @@
 
         /* --- Slideshow Styles --- */
         .slideshow-container {
-            max-width: 600px; /* Adjust as needed, matching card width for consistency */
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
             position: relative;
-            margin: 0 auto; /* Center the slideshow */
-            border-radius: 1.5rem; /* Match card styling */
-            overflow: hidden; /* Ensures image corners are rounded */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Match card shadow */
+            border-radius: 0; /* Remove rounded corners for true full screen */
+            overflow: hidden; /* Ensures image corners are handled */
+            box-shadow: none; /* Remove shadow for true full screen */
+            /* No margin-top here, it's the first element */
         }
 
         .mySlides {
             display: none; /* Hide images by default */
+            width: 100%;
+            height: 100%;
         }
 
         .mySlides img {
             width: 100%;
-            height: auto;
+            height: 100%; /* Make image fill the 100vh container */
+            object-fit: cover; /* Ensures image covers without distortion */
             display: block; /* Remove extra space below image */
         }
 
@@ -159,8 +163,10 @@
 
         /* The dots/bullets/indicators */
         .dot-container {
+            position: absolute; /* Position dots relative to slideshow-container */
+            bottom: 20px; /* Distance from the bottom of the slideshow */
+            width: 100%; /* Take full width to center dots */
             text-align: center;
-            margin-top: 15px; /* Space between slideshow and dots */
         }
         .dot {
             cursor: pointer;
@@ -191,7 +197,7 @@
         /* --- Responsive Adjustments for Smaller Screens (e.g., Samsung phones) --- */
         @media (max-width: 640px) { /* This media query applies styles for screens up to 640px wide */
             body {
-                padding: 10px; /* Reduce overall page padding on small screens */
+                padding: 0; /* No padding for full screen on mobile */
             }
             .card {
                 padding: 1.5rem; /* Reduce card padding to give content more space */
@@ -219,8 +225,9 @@
                 max-width: 120px; /* Make QR code smaller on small screens to save space */
             }
             .slideshow-container {
-                max-width: 100%; /* Allow slideshow to take full width on small screens */
-                border-radius: 0.5rem; /* Slightly less rounded for small screens */
+                width: 100vw; /* Full viewport width */
+                height: 100vh; /* Full viewport height */
+                border-radius: 0; /* No rounded corners for full screen on mobile */
             }
             .prev, .next {
                 font-size: 14px; /* Smaller arrows */
@@ -238,23 +245,25 @@
     <div class="slideshow-container">
         <!-- Slides (replace these placeholder images with your actual wedding photos) -->
         <div class="mySlides fade">
-            <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/Copie de f-9.jpg" alt="Wedding Photo 1">
+            <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/f-4.jpg" alt="Wedding Photo 1">
         </div>
         <div class="mySlides fade">
-            <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/f-4.jpg" alt="Wedding Photo 2">
+            <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/f-8.jpg" alt="Wedding Photo 2">
         </div>
         <div class="mySlides fade">
-            <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/f-6.jpg" alt="Wedding Photo 3">
+            <img src="https://raw.githubusercontent.com/hampy1/Our-Wedding/main/Copie de f-9.jpg" alt="Wedding Photo 3">
         </div>
 
         <!-- Next and previous buttons -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
-    <div class="dot-container">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
+
+        <!-- Dots container moved inside and positioned -->
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
     </div>
 
     <div class="card">
